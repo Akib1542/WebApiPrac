@@ -8,8 +8,8 @@ namespace Application.MappingProfiles
     {
         public Mappings() 
         {
-            CreateMap<Game,NewGame>();        
-            CreateMap<NewGame,Game>();   
+            CreateMap<NewGame, Game>();
+            CreateMap<Game, GameDTO>();
         }
     }
 }

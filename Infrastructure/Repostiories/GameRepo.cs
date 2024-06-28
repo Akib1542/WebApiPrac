@@ -1,6 +1,7 @@
 ﻿using Application.Repositories;
 using Domain;
 using Infrastructure.Contexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repostiories
 {
@@ -20,24 +21,27 @@ namespace Infrastructure.Repostiories
            
         }
 
-        public Task DeleteGameAsync(Game game)
+        public async Task DeleteGameAsync(Game game)
         {
-            throw new NotImplementedException();
+            _context.Remove(game);
+            await _context.SaveChangesAsync();   
         }
 
-        public Task<List<Game>> GetAllGamesAsync()
+        public async Task<List<Game>> GetAllGamesAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Games.ToListAsync();
         }
 
-        public Task<Game> GetGameById(int id)
+        public async Task<Game> GetGameById(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Games.FindAsync(id);
         }
 
-        public Task UpdateGameAsync(Game game)
+        public async Task UpdateGameAsync(Game game)
         {
-            throw new NotImplementedException();
+            _context.Games.Update(game);
+            await _context.SaveChangesAsync();
+
         }
     }
 }
